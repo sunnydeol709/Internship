@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Up – Learn Without Limits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink: #ff2d6b;
+            --pink-dark: #e0265f;
+            --dark: #0b0f2a;
+            --dark-2: #11163a;
+            --text: #1a1a2e;
+            --muted: #6b7280;
+            --white: #ffffff;
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background: #f8f9fc;
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ========== NAV ========== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #eee;
+            padding: 0 24px;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--dark);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #ff2d6b, #ff6b9d);
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #374151;
+        }
+
+        .nav-links a:hover {
+            color: var(--pink);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #374151;
+        }
+
+        .btn-ghost:hover {
+            color: var(--pink);
+        }
+
+        .btn-primary {
+            background: var(--pink);
+            color: white;
+            box-shadow: 0 4px 14px rgba(255, 45, 107, 0.35);
+        }
+
+        .btn-primary:hover {
+            background: var(--pink-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            background: var(--dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 24px 100px;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 420px;
+            height: 420px;
+            background: #6b21a8;
+            top: -100px;
+            right: -80px;
+        }
+
+        .hero::after {
+            width: 380px;
+            height: 380px;
+            background: #1e3a8a;
+            bottom: -120px;
+            left: -100px;
+        }
+
+        .hero-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            margin-bottom: 28px;
+            color: #e0e7ff;
+        }
+
+        .badge span {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(90deg, #ff2d6b, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #c7d2fe;
+            max-width: 580px;
+            margin: 0 auto 36px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 64px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        /* ========== SECTION COMMON ========== */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            margin-top: 6px;
+            font-size: 0.95rem;
+        }
+
+        .view-all {
+            color: var(--pink);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== FEATURED COURSES ========== */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .course-image {
+            height: 160px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .course-image .level {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(0, 0, 0, 0.55);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .course-image .icon {
+            font-size: 48px;
+            opacity: 0.9;
+        }
+
+        .course-body {
+            padding: 20px 22px 24px;
+        }
+
+        .course-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--pink);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+        }
+
+        .course-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.35;
+        }
+
+        .course-instructor {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .stars {
+            color: #f59e0b;
+            letter-spacing: -1px;
+        }
+
+        .price {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--pink);
+        }
+
+        .students {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 10px;
+        }
+
+        /* Course image gradients */
+        .g1 {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .g2 {
+            background: linear-gradient(135deg, #0ea5e9, #0369a1);
+        }
+
+        .g3 {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+        }
+
+        .g4 {
+            background: linear-gradient(135deg, #14b8a6, #0f766e);
+        }
+
+        .g5 {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .g6 {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+        }
+
+        /* ========== CATEGORIES ========== */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 14px;
+            padding: 28px 24px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.2s ease;
+            border: 1px solid #f1f5f9;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            border-color: #e2e8f0;
+        }
+
+        .cat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-size: 22px;
+        }
+
+        .cat-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .cat-count {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* Soft backgrounds for categories */
+        .c1 {
+            background: #eff6ff;
+        }
+
+        .c2 {
+            background: #ecfdf5;
+        }
+
+        .c3 {
+            background: #faf5ff;
+        }
+
+        .c4 {
+            background: #fff7ed;
+        }
+
+        .c5 {
+            background: #fef2f2;
+        }
+
+        .c6 {
+            background: #f0f9ff;
+        }
+
+        .c7 {
+            background: #fefce8;
+        }
+
+        .c8 {
+            background: #f5f3ff;
+        }
+
+        /* ========== TEACH SECTION ========== */
+        .teach {
+            text-align: center;
+            padding: 90px 24px;
+            background: white;
+        }
+
+        .teach h2 {
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .teach p {
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto 32px;
+            font-size: 1.05rem;
+        }
+
+        .teach-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-pink {
+            background: var(--pink);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 999px;
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(255, 45, 107, 0.3);
+        }
+
+        .btn-pink:hover {
+            background: var(--pink-dark);
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--text);
+            border: 1.5px solid #e5e7eb;
+            padding: 14px 28px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .btn-white:hover {
+            border-color: #d1d5db;
+        }
+
+        /* ========== CTA ========== */
+        .cta {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 80px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: #4c1d95;
+            border-radius: 50%;
+            filter: blur(100px);
+            top: -200px;
+            right: -100px;
+            opacity: 0.4;
+        }
+
+        .cta h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        .cta p {
+            color: #a5b4fc;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #06081a;
+            color: #64748b;
+            text-align: center;
+            padding: 28px 24px;
+            font-size: 0.875rem;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .stats {
+                gap: 28px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">🚀</div>
+                Learn Up
+            </a>
+            <div class="nav-links">
+                <a href="#">Courses</a>
+                <a href="#">Community</a>
+                <a href="#">Blog</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-ghost">Log In</a>
+                <a href="#" class="btn btn-primary">Sign Up Free</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="badge">
+                <span></span>
+                10,000+ learners already enrolled
+            </div>
+            <h1>
+                Learn Without Limits.<br />
+                <span class="highlight">Grow Without Boundaries.</span>
+            </h1>
+            <p>
+                Access world-class courses taught by industry experts. Build real skills,
+                earn certificates, and advance your career on your own schedule.
+            </p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Browse All Courses</a>
+                <a href="#" class="btn btn-outline">▶ Watch Demo</a>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Courses</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">15K+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4.9★</div>
+                    <div class="stat-label">Avg Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED COURSES -->
+    <section class="section">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Featured Courses</h2>
+                <p class="section-subtitle">Handpicked by our expert learning team</p>
+            </div>
+            <a href="#" class="view-all">View All Courses →</a>
+        </div>
+
+        <div class="courses-grid">
+            <!-- Course 1 -->
+            <article class="course-card">
+                <div class="course-image g1">
+                    <span class="level">Beginner</span>
+                    <div class="icon">🚀</div>
+                </div>
+                <div class="course-body">
+                    <div class="course-category">Web Dev</div>
+                    <h3 class="course-title">Complete React Developer Bootcamp 2024</h3>
+                    <div class="course-instructor">Sarah Chen</div>
+                    <div class="course-meta">
+                        <div class="rating"><span class="stars">★★★★★</span> 4.8</div>
+                        <div class="price">NPR 4,999</div>
+                    </div>
+                    <div class="students">1,245 students</div>
+                </div>
+            </article>
+
+            <!-- Course 2 -->
+            <article class="course-card">
+                <div class="course-image g2">
+                    <span class="level">Intermediate</span>
+                    <div class="icon">🐍</div>
+                </div>
+                <div class="course-body">
+                    <div class="course-category">Data Science</div>
+                    <h3 class="course-title">Python for Data Science & Machine Learning</h3>
+                    <div class="course-instructor">James Patel</div>
+                    <div class="course-meta">
+                        <div class="rating"><span class="stars">★★★★☆</span> 4.7</div>
+                        <div class="price">NPR 5,999</div>
+                    </div>
+                    <div class="students">3,102 students</div>
+                </div>
+            </article>
+
+            <!-- Course 3 -->
+            <article class="course-card">
+                <div class="course-image g3">
+                    <span class="level">All Levels</span>
+                    <div class="icon">🎨</div>
+                </div>
+                <div class="course-body">
+                    <div class="course-category">Design</div>
+                    <h3 class="course-title">UI/UX Design Masterclass with Figma</h3>
+                    <div class="course-instructor">Maya Rodriguez</div>
+                    <div class="course-meta">
+                        <div class="rating"><span class="stars">★★★★★</span> 4.9</div>
+                        <div class="price">NPR 3,999</div>
+                    </div>
+                    <div class="students">2,870 students</div>
+                </div>
+            </article>
+
+            <!-- Course 4 -->
+            <article class="course-card">
+                <div class="course-image g4">
+                    <span class="level">Intermediate</span>
+                    <div class="icon">⚡</div>
+                </div>
+                <div class="course-body">
+                    <div class="course-category">Backend</div>
+                    <h3 class="course-title">Node.js & Express API Development</h3>
+                    <div class="course-instructor">David Kim</div>
+                    <div class="course-meta">
+                        <div class="rating"><span class="stars">★★★★☆</span> 4.6</div>
+                        <div class="price">NPR 4,499</div>
+                    </div>
+                    <div class="students">1,890 students</div>
+                </div>
+            </article>
+
+            <!-- Course 5 -->
+            <article class="course-card">
+                <div class="course-image g5">
+                    <span class="level">Beginner</span>
+                    <div class="icon">📈</div>
+                </div>
+                <div class="course-body">
+                    <div class="course-category">Marketing</div>
+                    <h3 class="course-title">Digital Marketing: SEO to Social Media</h3>
+                    <div class="course-instructor">Priya Sharma</div>
+                    <div class="course-meta">
+                        <div class="rating"><span class="stars">★★★★☆</span> 4.5</div>
+                        <div class="price">NPR 2,999</div>
+                    </div>
+                    <div class="students">4,210 students</div>
+                </div>
+            </article>
+
+            <!-- Course 6 -->
+            <article class="course-card">
+                <div class="course-image g6">
+                    <span class="level">All Levels</span>
+                    <div class="icon">☁️</div>
+                </div>
+                <div class="course-body">
+                    <div class="course-category">Cloud</div>
+                    <h3 class="course-title">AWS Cloud Practitioner Certification</h3>
+                    <div class="course-instructor">Alex Murphy</div>
+                    <div class="course-meta">
+                        <div class="rating"><span class="stars">★★★★★</span> 4.8</div>
+                        <div class="price">NPR 6,499</div>
+                    </div>
+                    <div class="students">1,567 students</div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- BROWSE CATEGORIES -->
+    <section class="section" style="padding-top: 20px;">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Browse Categories</h2>
+                <p class="section-subtitle">Explore courses across all domains</p>
+            </div>
+        </div>
+
+        <div class="categories-grid">
+            <a href="#" class="category-card">
+                <div class="cat-icon c1">💻</div>
+                <div class="cat-title">Web Development</div>
+                <div class="cat-count">18 courses</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="cat-icon c2">📊</div>
+                <div class="cat-title">Data Science</div>
+                <div class="cat-count">12 courses</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="cat-icon c3">🎨</div>
+                <div class="cat-title">UI/UX Design</div>
+                <div class="cat-count">9 courses</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="cat-icon c4">☁️</div>
+                <div class="cat-title">Cloud & DevOps</div>
+                <div class="cat-count">11 courses</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="cat-icon c5">📱</div>
+                <div class="cat-title">Digital Marketing</div>
+                <div class="cat-count">14 courses</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="cat-icon c6">🔒</div>
+                <div class="cat-title">Cybersecurity</div>
+                <div class="cat-count">7 courses</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="cat-icon c7">📲</div>
+                <div class="cat-title">Mobile Dev</div>
+                <div class="cat-count">8 courses</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="cat-icon c8">🤖</div>
+                <div class="cat-title">AI & Machine Learning</div>
+                <div class="cat-count">10 courses</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- TEACH SECTION -->
+    <section class="teach">
+        <h2>Teach What You Know.<br />Earn What You Deserve.</h2>
+        <p>
+            Join our trainer community and start earning by sharing your expertise
+            with thousands of eager learners.
+        </p>
+        <div class="teach-buttons">
+            <a href="#" class="btn-pink">Become a Trainer →</a>
+            <a href="#" class="btn-white">Learn More</a>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta">
+        <h2>Ready to Start Your Journey?</h2>
+        <p>Join thousands of learners already advancing their careers with LearnUp.</p>
+        <a href="#" class="btn btn-primary" style="padding: 14px 32px; font-size: 1.05rem;">
+            Get Started — It’s Free
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2025 LearnUp. All rights reserved. Built with ♥ for learners everywhere.
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- MAIN TODO LIST -->
+    <div class="todo-app">
+        <h1 class="app-title">TODO LIST</h1>
+
+        <div class="top-bar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="search" />
+            </div>
+            <button class="btn btn-add">Add</button>
+        </div>
+
+        <div class="todo-grid">
+            <!-- Card 1 -->
+            <div class="todo-card">
+                <div class="todo-title">Title</div>
+                <div class="todo-desc">description</div>
+                <div class="todo-priority">priority</div>
+                <div class="card-actions">
+                    <button class="action-btn edit" title="Edit"></button>
+                    <button class="action-btn delete" title="Delete"></button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="todo-card">
+                <div class="todo-title">Title</div>
+                <div class="todo-desc">description</div>
+                <div class="todo-priority">priority</div>
+                <div class="card-actions">
+                    <button class="action-btn edit" title="Edit"></button>
+                    <button class="action-btn delete" title="Delete"></button>
+                </div>
+            </div>
+
+            <!-- Empty placeholder cards -->
+            <div class="todo-card empty"></div>
+            <div class="todo-card empty"></div>
+        </div>
+    </div>
+
+    <!-- ADD LIST PANEL -->
+    <div class="add-panel">
+        <h2>Add List</h2>
+
+        <div class="form-group">
+            <label for="title">title</label>
+            <input type="text" id="title" placeholder="Enter title" />
+        </div>
+
+        <div class="form-group">
+            <label for="description">description</label>
+            <textarea id="description" placeholder="Enter description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="priority">priority</label>
+            <select id="priority">
+                <option value="">Select priority</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+        </div>
+
+        <button class="btn btn-submit">submit</button>
+    </div>
+
+</body>
+
+</html>
